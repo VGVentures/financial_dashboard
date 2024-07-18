@@ -1,0 +1,44 @@
+{
+  "appBarTitleText": "Theme Potential",
+  "@appBarTitleText": {
+    "description": "Text shown on appBar.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceFrameAppBarTitle": "Retirement predictions",
+  "@fuelGaugeFull": {
+    "description": "App bar title shown on the device frame",
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentSavingsLabel": "Current savings",
+  "@currentSavingsLabel": {
+    "description": "Label for current savings",
+    "type": "text",
+    "placeholders": {}
+  },
+  "monthlyGoalLabel": "Monthly goal",
+  "@monthlyGoalLabel": {
+    "description": "Label for monthly goal",
+    "type": "text",
+    "placeholders": {}
+  },
+  "transactionsTitle": "Transactions",
+  "@transactionsTitle": {
+    "description": "Title for transactions section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomeTransactionLabel": "Income",
+  "@incomeTransactionLabel": {
+    "description": "Label for income transaction types",
+    "type": "text",
+    "placeholders": {}
+  },
+  "spendingsTransactionLabel": "Spendings",
+  "@spendingsTransactionLabel": {
+    "description": "Label for spendings transaction types",
+    "type": "text",
+    "placeholders": {}
+  }
+}
