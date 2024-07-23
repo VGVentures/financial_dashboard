@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:financial_dashboard/demo/demo.dart';
+import 'package:financial_dashboard/flavor_button/cubit/flavor_cubit.dart';
 import 'package:financial_dashboard/theme_button/theme_button.dart';
 import 'package:financial_dashboard/thumbnail/thumbnail.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ import '../helpers/helpers.dart';
 class MockThemeModeCubit extends MockCubit<ThemeMode>
     implements ThemeModeCubit {}
 
+class MockFlavorCubit extends MockCubit<AppFlavor> implements FlavorCubit {}
+
 void main() {
   group('ThemePotentialThumbnail', () {
     testWidgets('renders AppFlavorView', (tester) async {
@@ -21,15 +24,18 @@ void main() {
 
   group('AppFlavorView', () {
     late ThemeModeCubit themeModeCubit;
+    late FlavorCubit flavorCubit;
     late AnimationController controller;
 
     setUp(() {
       themeModeCubit = MockThemeModeCubit();
+      flavorCubit = MockFlavorCubit();
       controller = AnimationController(
         vsync: const TestVSync(),
         duration: const Duration(milliseconds: 3500),
       );
       when(() => themeModeCubit.state).thenReturn(ThemeMode.light);
+      when(() => flavorCubit.state).thenReturn(AppFlavor.one);
     });
 
     testWidgets('renders correct widgets on animation', (tester) async {
@@ -38,6 +44,7 @@ void main() {
           animationController: controller,
         ),
         themeModeCubit: themeModeCubit,
+        flavorCubit: flavorCubit,
       );
 
       controller

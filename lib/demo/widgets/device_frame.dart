@@ -1,5 +1,4 @@
 import 'package:financial_dashboard/theme_button/theme_button.dart';
-import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,8 +8,8 @@ class DeviceFrame extends StatelessWidget {
     required this.darkTheme,
     required this.child,
     super.key,
-    this.borderRadius = AppSpacing.xlg,
-    this.elevation = AppSpacing.xxs,
+    this.borderRadius = 0,
+    this.elevation = 0,
   });
 
   final ThemeData lightTheme;
