@@ -20,8 +20,8 @@ List<LineChartPoint> _createSampleData() {
   return data;
 }
 
-class RetirementPredicitionChart extends StatefulWidget {
-  const RetirementPredicitionChart({
+class RetirementPredictionChart extends StatefulWidget {
+  const RetirementPredictionChart({
     required this.onCurrentSavings,
     super.key,
     this.showAreaElement = false,
@@ -35,12 +35,11 @@ class RetirementPredicitionChart extends StatefulWidget {
   final double selectedPointRadius;
 
   @override
-  State<RetirementPredicitionChart> createState() =>
-      _RetirementPredicitionChartState();
+  State<RetirementPredictionChart> createState() =>
+      _RetirementPredictionChartState();
 }
 
-class _RetirementPredicitionChartState
-    extends State<RetirementPredicitionChart> {
+class _RetirementPredictionChartState extends State<RetirementPredictionChart> {
   late final List<LineChartPoint> _sampleData;
 
   final _showTooltip = ValueNotifier<bool>(false);

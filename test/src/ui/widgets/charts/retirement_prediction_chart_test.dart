@@ -9,7 +9,7 @@ void main() {
     Widget buildSubject({
       void Function(String)? onCurrentSavings,
     }) =>
-        RetirementPredicitionChart(
+        RetirementPredictionChart(
           onCurrentSavings: onCurrentSavings ?? (_) {},
         );
 
