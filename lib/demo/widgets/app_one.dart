@@ -25,7 +25,7 @@ class AppOne extends StatelessWidget {
             children: [
               CurrentSavings(savings: _currentSavings),
               const SizedBox(height: AppSpacing.md),
-              RetirementPredicitionChart(
+              RetirementPredictionChart(
                 onCurrentSavings: (value) => _currentSavings.value = value,
                 showAnnotations: true,
               ),
@@ -47,7 +47,7 @@ class AppOne extends StatelessWidget {
             const SizedBox(width: AppSpacing.xlg),
             const Expanded(
               child: MonthlyGoal(amount: r'$3,125.00'),
-            )
+            ),
           ],
         ),
       ),

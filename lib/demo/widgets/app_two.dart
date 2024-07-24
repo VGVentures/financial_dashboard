@@ -30,7 +30,7 @@ class AppTwo extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.xlg,
                   ),
-                  child: RetirementPredicitionChart(
+                  child: RetirementPredictionChart(
                     onCurrentSavings: (value) => _currentSavings.value = value,
                   ),
                 ),
@@ -55,7 +55,7 @@ class AppTwo extends StatelessWidget {
               left: AppSpacing.xlg,
               right: AppSpacing.xlg,
               child: Material(
-                color: colorScheme.surfaceVariant,
+                color: colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(AppSpacing.xlg),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -65,7 +65,7 @@ class AppTwo extends StatelessWidget {
                   child: CurrentSavings(savings: _currentSavings),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

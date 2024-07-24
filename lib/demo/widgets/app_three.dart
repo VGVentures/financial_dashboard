@@ -26,7 +26,7 @@ class AppThree extends StatelessWidget {
             children: [
               CurrentSavings(savings: _currentSavings),
               const SizedBox(height: AppSpacing.md),
-              RetirementPredicitionChart(
+              RetirementPredictionChart(
                 showAreaElement: true,
                 selectedPointRadius: AppSpacing.xs,
                 onCurrentSavings: (value) => _currentSavings.value = value,
@@ -49,7 +49,7 @@ class AppThree extends StatelessWidget {
             const SizedBox(width: AppSpacing.xlg),
             const Expanded(
               child: MonthlyGoal(amount: r'$1,125.00'),
-            )
+            ),
           ],
         ),
       ),

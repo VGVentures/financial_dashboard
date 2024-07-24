@@ -136,8 +136,8 @@ class _AppView extends StatelessWidget {
     return DeviceFrame(
       lightTheme: lightTheme,
       darkTheme: darkTheme,
-      borderRadius: 0,
-      elevation: 0,
+      borderRadius: AppSpacing.xlg,
+      elevation: AppSpacing.xxs,
       child: child,
     );
   }
