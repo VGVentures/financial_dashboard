@@ -30,11 +30,7 @@ class DeviceFrame extends StatelessWidget {
         elevation: elevation,
         borderRadius: BorderRadius.circular(borderRadius),
         clipBehavior: Clip.antiAlias,
-        child: SizedBox(
-          height: 736,
-          width: 414,
-          child: child,
-        ),
+        child: child,
       ),
     );
   }

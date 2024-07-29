@@ -26,7 +26,10 @@ extension PumpExperience on WidgetTester {
         child: MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          home: widget,
+          home: MediaQuery(
+            data: const MediaQueryData(),
+            child: widget,
+          ),
         ),
       ),
     );

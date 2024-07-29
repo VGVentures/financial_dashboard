@@ -10,8 +10,11 @@ class ThemeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeMode = context.watch<ThemeModeCubit>().state;
     final isLightTheme = themeMode == ThemeMode.light;
+
+    // Always show what the theme would be if the icon was tapped, not what
+    // the current theme is.
     final icon =
-        isLightTheme ? Icons.light_mode_outlined : Icons.dark_mode_outlined;
+        !isLightTheme ? Icons.light_mode_outlined : Icons.dark_mode_outlined;
 
     return Align(
       child: InkWell(
