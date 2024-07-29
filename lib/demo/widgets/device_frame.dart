@@ -26,7 +26,12 @@ class DeviceFrame extends StatelessWidget {
 
     return Theme(
       data: data,
-      child: child,
+      child: Material(
+        elevation: elevation,
+        borderRadius: BorderRadius.circular(borderRadius),
+        clipBehavior: Clip.antiAlias,
+        child: child,
+      ),
     );
   }
 }
