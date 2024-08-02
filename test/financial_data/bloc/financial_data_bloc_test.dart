@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('FinancialDataBloc', () {
-    testBloc<FinancialDataBloc, FinancialDataState>(
+    blocTest<FinancialDataBloc, FinancialDataState>(
+      'loads financial data when $FinancialDataRequested is added',
       build: FinancialDataBloc.new,
       act: (bloc) => bloc.add(FinancialDataRequested()),
       expect: () => [

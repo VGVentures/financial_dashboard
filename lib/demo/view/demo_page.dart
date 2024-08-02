@@ -16,10 +16,7 @@ class DemoPage extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => ThemeModeCubit()),
         BlocProvider(create: (_) => FlavorCubit()),
-        BlocProvider(
-          create: (_) =>
-              FinancialDataBloc()..add(const FinancialDataRequested()),
-        ),
+        BlocProvider(create: (_) => FinancialDataBloc()),
       ],
       child: const DemoView(),
     );
