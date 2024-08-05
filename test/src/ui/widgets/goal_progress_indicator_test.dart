@@ -1,3 +1,5 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:financial_dashboard/financial_data/financial_data.dart';
 import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,22 +14,38 @@ class MockColorScheme extends Mock implements ColorScheme {
   }
 }
 
+class _MockFinancialDataBloc
+    extends MockBloc<FinancialDataEvent, FinancialDataState>
+    implements FinancialDataBloc {}
+
 void main() {
   group('CircleProgressPainter', () {
+    late FinancialDataBloc financialDataBloc;
+
+    setUp(() {
+      financialDataBloc = _MockFinancialDataBloc();
+
+      when(() => financialDataBloc.state).thenReturn(FinancialDataState());
+    });
+
     group('$GoalProgressIndicator', () {
       testWidgets('renders without gradient', (tester) async {
-        await tester.pumpExperience(const GoalProgressIndicator(value: 1));
+        await tester.pumpExperience(
+          GoalProgressIndicator(value: 1),
+          financialDataBloc: financialDataBloc,
+        );
         await tester.pumpAndSettle();
+
         expect(find.byType(GoalProgressIndicator), findsOneWidget);
       });
 
       testWidgets('renders with gradient', (tester) async {
         await tester.pumpExperience(
-          const GoalProgressIndicator(
-            isGradient: true,
-          ),
+          GoalProgressIndicator(isGradient: true),
+          financialDataBloc: financialDataBloc,
         );
         await tester.pumpAndSettle();
+
         expect(find.byType(GoalProgressIndicator), findsOneWidget);
       });
     });
