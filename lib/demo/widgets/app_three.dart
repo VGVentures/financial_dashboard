@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 class AppThree extends StatelessWidget {
   const AppThree({super.key});
 
-  static final _currentSavings = ValueNotifier<String?>(null);
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -24,12 +22,11 @@ class AppThree extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CurrentSavings(savings: _currentSavings),
+              const CurrentSavings(),
               const SizedBox(height: AppSpacing.md),
               RetirementPredictionChart(
                 showAreaElement: true,
                 selectedPointRadius: AppSpacing.xs,
-                onCurrentSavings: (value) => _currentSavings.value = value,
               ),
             ],
           ),

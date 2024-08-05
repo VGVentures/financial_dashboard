@@ -40,5 +40,11 @@
     "description": "Label for spendings transaction types",
     "type": "text",
     "placeholders": {}
+  },
+  "noDataAvailable": "No data available",
+  "@noDataAvailable": {
+    "description": "Text shown when there is no data available",
+    "type": "text",
+    "placeholders": {}
   }
 }

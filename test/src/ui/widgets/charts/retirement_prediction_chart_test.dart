@@ -9,9 +9,7 @@ void main() {
     Widget buildSubject({
       void Function(String)? onCurrentSavings,
     }) =>
-        RetirementPredictionChart(
-          onCurrentSavings: onCurrentSavings ?? (_) {},
-        );
+        RetirementPredictionChart();
 
     testWidgets('renders LineChartBody', (tester) async {
       await tester.pumpExperience(buildSubject());

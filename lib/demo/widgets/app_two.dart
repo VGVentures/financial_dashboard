@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 class AppTwo extends StatelessWidget {
   const AppTwo({super.key});
 
-  static final _currentSavings = ValueNotifier<String?>(null);
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -30,9 +28,7 @@ class AppTwo extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.xlg,
                   ),
-                  child: RetirementPredictionChart(
-                    onCurrentSavings: (value) => _currentSavings.value = value,
-                  ),
+                  child: RetirementPredictionChart(),
                 ),
                 Container(
                   height: spacing,
@@ -62,7 +58,7 @@ class AppTwo extends StatelessWidget {
                     horizontal: AppSpacing.md,
                     vertical: AppSpacing.lg,
                   ),
-                  child: CurrentSavings(savings: _currentSavings),
+                  child: const CurrentSavings(),
                 ),
               ),
             ),
