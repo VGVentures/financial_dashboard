@@ -1,4 +1,5 @@
 import 'package:financial_dashboard/demo/demo.dart';
+import 'package:financial_dashboard/financial_data/financial_data.dart';
 import 'package:financial_dashboard/flavor_button/flavor_button.dart';
 import 'package:financial_dashboard/l10n/l10n.dart';
 import 'package:financial_dashboard/theme_button/theme_button.dart';
@@ -15,6 +16,7 @@ class DemoPage extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => ThemeModeCubit()),
         BlocProvider(create: (_) => FlavorCubit()),
+        BlocProvider(create: (_) => FinancialDataBloc()),
       ],
       child: const DemoView(),
     );
