@@ -32,8 +32,18 @@ void main() {
       financialDataBloc = _MockFinancialDataBloc();
 
       when(() => themeModeCubit.state).thenReturn(ThemeMode.light);
-      when(() => financialDataBloc.state)
-          .thenReturn(const FinancialDataState());
+      when(() => financialDataBloc.state).thenReturn(
+        FinancialDataState(
+          currentSavings: 123456,
+          savingsDataPoints: createSampleData(),
+          monthlySpendingLimitGoal: 1000,
+          transactions: [
+            const Transaction(title: 'Paycheck', amount: 3000),
+            const Transaction(title: 'Rent', amount: -1050.20),
+            const Transaction(title: 'Food', amount: -670.50),
+          ],
+        ),
+      );
     });
 
     testWidgets('renders AppOne when AppFlavor is one', (tester) async {
