@@ -48,7 +48,7 @@ class AppThree extends StatelessWidget {
             ),
             const SizedBox(width: AppSpacing.xlg),
             const Expanded(
-              child: MonthlyGoal(amount: r'$1,125.00'),
+              child: MonthlyGoal(),
             ),
           ],
         ),
