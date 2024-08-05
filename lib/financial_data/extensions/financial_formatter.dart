@@ -2,8 +2,8 @@ import 'package:intl/intl.dart';
 
 extension FinancialFormatterX on double {
   String toCurrencyWithoutDecimal() =>
-      '\$${NumberFormat('###,###').format(this)}';
+      NumberFormat.currency(decimalDigits: 0, symbol: r'$').format(this);
 
   String toCurrencyWithDecimals() =>
-      '\$${NumberFormat('###,###.00').format(this)}';
+      NumberFormat.currency(decimalDigits: 2, symbol: r'$').format(this);
 }

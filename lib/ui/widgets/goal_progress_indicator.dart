@@ -1,7 +1,9 @@
 import 'dart:math' as math;
 
+import 'package:financial_dashboard/financial_data/financial_data.dart';
 import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GoalProgressIndicator extends StatelessWidget {
   const GoalProgressIndicator({
@@ -22,7 +24,17 @@ class GoalProgressIndicator extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final coloScheme = theme.colorScheme;
+    final monthlySpendingLimitGoal = context.select(
+      (FinancialDataBloc bloc) => bloc.state.monthlySpendingLimitGoal,
+    );
+    final transactions = context.select(
+      (FinancialDataBloc bloc) => bloc.state.transactions,
+    );
 
+    var value = 0.0;
+    if (monthlySpendingLimitGoal != 0) {
+      value = transactions.spent.abs() / monthlySpendingLimitGoal;
+    }
     final displayValue = (value * 100).toInt();
 
     return SizedBox(

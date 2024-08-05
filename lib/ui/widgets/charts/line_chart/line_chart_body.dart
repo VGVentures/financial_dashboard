@@ -48,7 +48,7 @@ class _LineChartBodyState extends State<LineChartBody> {
     });
 
     _gestureStream = StreamController.broadcast();
-    _gestureStream.stream.listen(_ongestureStreamUpdate);
+    _gestureStream.stream.listen(_onGestureStreamUpdate);
   }
 
   void _onSelectionChannelUpdate(Map<String, Set<int>>? selections) {
@@ -60,7 +60,7 @@ class _LineChartBodyState extends State<LineChartBody> {
     }
   }
 
-  void _ongestureStreamUpdate(GestureEvent signal) {
+  void _onGestureStreamUpdate(GestureEvent signal) {
     final gesture = signal.gesture;
     final type = gesture.type;
     final position = gesture.localPosition;

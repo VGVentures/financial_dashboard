@@ -1,14 +1,13 @@
+import 'package:financial_dashboard/financial_data/financial_data.dart';
 import 'package:financial_dashboard/l10n/l10n.dart';
 import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MonthlyGoal extends StatelessWidget {
   const MonthlyGoal({
-    required this.amount,
     super.key,
   });
-
-  final String amount;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +15,9 @@ class MonthlyGoal extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
+    final monthlySpendingLimitGoal = context.select(
+      (FinancialDataBloc bloc) => bloc.state.monthlySpendingLimitGoal,
+    );
 
     return Card(
       elevation: 0,
@@ -32,12 +34,12 @@ class MonthlyGoal extends StatelessWidget {
               fit: BoxFit.scaleDown,
               child: DefaultTextStyle(
                 style: textTheme.displaySmall!,
-                child: Text(amount),
+                child: Text(monthlySpendingLimitGoal.toCurrencyWithDecimals()),
               ),
             ),
             const SizedBox(height: AppSpacing.xxs),
             Text(
-              l10n.monthlyGoalLabel,
+              l10n.monthlySpendingLimitGoal,
               style: textTheme.labelMedium,
             ),
           ],

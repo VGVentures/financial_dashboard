@@ -1,4 +1,6 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:financial_dashboard/demo/demo.dart';
+import 'package:financial_dashboard/financial_data/financial_data.dart';
 import 'package:financial_dashboard/flavor_button/flavor_button.dart';
 import 'package:financial_dashboard/theme_button/theme_button.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../helpers/helpers.dart';
+
+class _MockFinancialDataBloc
+    extends MockBloc<FinancialDataEvent, FinancialDataState>
+    implements FinancialDataBloc {}
 
 void main() {
   group('DemoPage', () {
@@ -18,12 +24,26 @@ void main() {
   group('DemoView', () {
     late FlavorCubit flavorCubit;
     late ThemeModeCubit themeModeCubit;
+    late FinancialDataBloc financialDataBloc;
 
     setUp(() {
       flavorCubit = MockFlavorCubit();
       themeModeCubit = MockThemeModeCubit();
+      financialDataBloc = _MockFinancialDataBloc();
 
       when(() => themeModeCubit.state).thenReturn(ThemeMode.light);
+      when(() => financialDataBloc.state).thenReturn(
+        FinancialDataState(
+          currentSavings: 123456,
+          savingsDataPoints: createSampleData(),
+          monthlySpendingLimitGoal: 1000,
+          transactions: [
+            const Transaction(title: 'Paycheck', amount: 3000),
+            const Transaction(title: 'Rent', amount: -1050.20),
+            const Transaction(title: 'Food', amount: -670.50),
+          ],
+        ),
+      );
     });
 
     testWidgets('renders AppOne when AppFlavor is one', (tester) async {
@@ -32,6 +52,7 @@ void main() {
         const DemoView(),
         flavorCubit: flavorCubit,
         themeModeCubit: themeModeCubit,
+        financialDataBloc: financialDataBloc,
       );
       expect(find.byType(AppOne), findsOneWidget);
     });
@@ -42,6 +63,7 @@ void main() {
         const DemoView(),
         flavorCubit: flavorCubit,
         themeModeCubit: themeModeCubit,
+        financialDataBloc: financialDataBloc,
       );
       expect(find.byType(AppTwo), findsOneWidget);
     });
@@ -52,6 +74,7 @@ void main() {
         const DemoView(),
         flavorCubit: flavorCubit,
         themeModeCubit: themeModeCubit,
+        financialDataBloc: financialDataBloc,
       );
       expect(find.byType(AppThree), findsOneWidget);
     });
