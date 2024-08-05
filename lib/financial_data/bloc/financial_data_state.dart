@@ -52,15 +52,15 @@ class SavingsDataPoint extends Equatable {
 
 class Transaction extends Equatable {
   const Transaction({
-    required this.name,
+    required this.title,
     required this.amount,
   });
 
-  final String name;
+  final String title;
   final double amount;
 
   @override
-  List<Object?> get props => [name, amount];
+  List<Object?> get props => [title, amount];
 }
 
 extension TransactionListX on List<Transaction> {

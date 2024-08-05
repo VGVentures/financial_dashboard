@@ -1,24 +1,8 @@
-import 'package:equatable/equatable.dart';
+import 'package:financial_dashboard/financial_data/financial_data.dart';
 import 'package:financial_dashboard/l10n/l10n.dart';
 import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
-
-enum TransactionType { income, expense }
-
-class Transaction extends Equatable {
-  const Transaction({
-    required this.type,
-    required this.title,
-    required this.amount,
-  });
-
-  final TransactionType type;
-  final String title;
-  final String amount;
-
-  @override
-  List<Object> get props => [type, title, amount];
-}
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TransactionsTable extends StatelessWidget {
   const TransactionsTable({
@@ -28,30 +12,15 @@ class TransactionsTable extends StatelessWidget {
 
   final TextStyle? titleStyle;
 
-  static const _transactions = <Transaction>[
-    Transaction(
-      type: TransactionType.income,
-      title: 'Paycheck',
-      amount: r'+$3,000',
-    ),
-    Transaction(
-      type: TransactionType.expense,
-      title: 'Rent',
-      amount: r'-$1,000',
-    ),
-    Transaction(
-      type: TransactionType.expense,
-      title: 'Food',
-      amount: r'-$800',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
+    final transactions = context.select(
+      (FinancialDataBloc bloc) => bloc.state.transactions,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -65,7 +34,7 @@ class TransactionsTable extends StatelessWidget {
           context: context,
           color: colorScheme.surfaceContainerHighest,
           tiles: [
-            for (final transaction in _transactions)
+            for (final transaction in transactions)
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(transaction.title),
@@ -73,12 +42,12 @@ class TransactionsTable extends StatelessWidget {
                   style: textTheme.bodyMedium!.copyWith(
                     color: colorScheme.onSurfaceVariant.withOpacity(0.8),
                   ),
-                  child: transaction.type == TransactionType.income
+                  child: transaction.amount > 0
                       ? Text(l10n.incomeTransactionLabel)
                       : Text(l10n.expenseTransactionLabel),
                 ),
                 trailing: Text(
-                  transaction.amount,
+                  transaction.amount.toCurrencyWithoutDecimal(),
                   style: textTheme.bodyLarge?.copyWith(
                     fontWeight: AppFontWeight.semiBold,
                   ),

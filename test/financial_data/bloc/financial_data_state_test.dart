@@ -32,7 +32,7 @@ void main() {
 
       test('copies transactions', () {
         final state = FinancialDataState();
-        final transaction = Transaction(name: 'test', amount: 123.45);
+        final transaction = Transaction(title: 'test', amount: 123.45);
         final newState = state.copyWith(transactions: [transaction]);
 
         expect(newState.transactions, equals([transaction]));
@@ -53,9 +53,9 @@ void main() {
 
   group('Transaction', () {
     test('supports value equality', () {
-      const pointA = Transaction(name: 'test', amount: 100);
-      const secondPointA = Transaction(name: 'test', amount: 100);
-      const pointB = Transaction(name: 'test-two', amount: 200);
+      const pointA = Transaction(title: 'test', amount: 100);
+      const secondPointA = Transaction(title: 'test', amount: 100);
+      const pointB = Transaction(title: 'test-two', amount: 200);
 
       expect(pointA, equals(secondPointA));
       expect(pointA, isNot(equals(pointB)));

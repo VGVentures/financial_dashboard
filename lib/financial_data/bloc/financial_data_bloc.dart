@@ -20,9 +20,9 @@ class FinancialDataBloc extends Bloc<FinancialDataEvent, FinancialDataState> {
         savingsDataPoints: createSampleData(),
         monthlySpendingLimitGoal: 3210.55,
         transactions: [
-          const Transaction(name: 'Paycheck', amount: 3000),
-          const Transaction(name: 'Rent', amount: -1050.20),
-          const Transaction(name: 'Food', amount: -670.50),
+          const Transaction(title: 'Paycheck', amount: 3000),
+          const Transaction(title: 'Rent', amount: -1050.20),
+          const Transaction(title: 'Food', amount: -670.50),
         ],
       ),
     );
