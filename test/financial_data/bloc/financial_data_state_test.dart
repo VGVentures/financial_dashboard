@@ -25,9 +25,9 @@ void main() {
 
       test('copies monthlySpendingGoal', () {
         final state = FinancialDataState();
-        final newState = state.copyWith(monthlySpendingGoal: 123.45);
+        final newState = state.copyWith(monthlySpendingLimitGoal: 123.45);
 
-        expect(newState.monthlySpendingGoal, 123.45);
+        expect(newState.monthlySpendingLimitGoal, 123.45);
       });
 
       test('copies transactions', () {

@@ -18,11 +18,11 @@ class FinancialDataBloc extends Bloc<FinancialDataEvent, FinancialDataState> {
       state.copyWith(
         currentSavings: 234567.91,
         savingsDataPoints: createSampleData(),
-        monthlySpendingGoal: 3210.55,
+        monthlySpendingLimitGoal: 3210.55,
         transactions: [
           const Transaction(name: 'Paycheck', amount: 3000),
-          const Transaction(name: 'Rent', amount: 1050.20),
-          const Transaction(name: 'Food', amount: 670.50),
+          const Transaction(name: 'Rent', amount: -1050.20),
+          const Transaction(name: 'Food', amount: -670.50),
         ],
       ),
     );

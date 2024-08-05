@@ -4,25 +4,26 @@ class FinancialDataState extends Equatable {
   const FinancialDataState({
     this.currentSavings = 0,
     this.savingsDataPoints = const [],
-    this.monthlySpendingGoal = 0,
+    this.monthlySpendingLimitGoal = 0,
     this.transactions = const [],
   });
 
   final double currentSavings;
   final List<SavingsDataPoint> savingsDataPoints;
-  final double monthlySpendingGoal;
+  final double monthlySpendingLimitGoal;
   final List<Transaction> transactions;
 
   FinancialDataState copyWith({
     double? currentSavings,
     List<SavingsDataPoint>? savingsDataPoints,
-    double? monthlySpendingGoal,
+    double? monthlySpendingLimitGoal,
     List<Transaction>? transactions,
   }) {
     return FinancialDataState(
       currentSavings: currentSavings ?? this.currentSavings,
       savingsDataPoints: savingsDataPoints ?? this.savingsDataPoints,
-      monthlySpendingGoal: monthlySpendingGoal ?? this.monthlySpendingGoal,
+      monthlySpendingLimitGoal:
+          monthlySpendingLimitGoal ?? this.monthlySpendingLimitGoal,
       transactions: transactions ?? this.transactions,
     );
   }
@@ -31,7 +32,7 @@ class FinancialDataState extends Equatable {
   List<Object> get props => [
         currentSavings,
         savingsDataPoints,
-        monthlySpendingGoal,
+        monthlySpendingLimitGoal,
         transactions,
       ];
 }
@@ -60,4 +61,12 @@ class Transaction extends Equatable {
 
   @override
   List<Object?> get props => [name, amount];
+}
+
+extension TransactionListX on List<Transaction> {
+  List<Transaction> get expenses =>
+      where((element) => element.amount < 0).toList();
+
+  double get spent =>
+      expenses.fold(0, (value, element) => value + element.amount);
 }

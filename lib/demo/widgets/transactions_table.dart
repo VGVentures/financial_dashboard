@@ -3,7 +3,7 @@ import 'package:financial_dashboard/l10n/l10n.dart';
 import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
 
-enum TransactionType { income, spendings }
+enum TransactionType { income, expense }
 
 class Transaction extends Equatable {
   const Transaction({
@@ -35,12 +35,12 @@ class TransactionsTable extends StatelessWidget {
       amount: r'+$3,000',
     ),
     Transaction(
-      type: TransactionType.spendings,
+      type: TransactionType.expense,
       title: 'Rent',
       amount: r'-$1,000',
     ),
     Transaction(
-      type: TransactionType.spendings,
+      type: TransactionType.expense,
       title: 'Food',
       amount: r'-$800',
     ),
@@ -75,7 +75,7 @@ class TransactionsTable extends StatelessWidget {
                   ),
                   child: transaction.type == TransactionType.income
                       ? Text(l10n.incomeTransactionLabel)
-                      : Text(l10n.spendingsTransactionLabel),
+                      : Text(l10n.expenseTransactionLabel),
                 ),
                 trailing: Text(
                   transaction.amount,

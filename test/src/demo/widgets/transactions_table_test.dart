@@ -15,7 +15,7 @@ void main() {
         amount: 'test-amount',
       );
       const pointB = Transaction(
-        type: TransactionType.spendings,
+        type: TransactionType.expense,
         title: 'test-title-two',
         amount: 'test-amount-two',
       );

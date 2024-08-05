@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "appBarTitleText": "Theme Potential",
   "@appBarTitleText": {
     "description": "Text shown on appBar.",
@@ -17,9 +18,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "monthlyGoalLabel": "Monthly goal",
-  "@monthlyGoalLabel": {
-    "description": "Label for monthly goal",
+  "monthlySpendingLimitGoal": "Monthly spending limit goal",
+  "@monthlySpendingLimitGoal": {
+    "description": "Label for monthly spending limit goal",
     "type": "text",
     "placeholders": {}
   },
@@ -35,9 +36,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "spendingsTransactionLabel": "Spendings",
-  "@spendingsTransactionLabel": {
-    "description": "Label for spendings transaction types",
+  "expenseTransactionLabel": "Expense",
+  "@expenseTransactionLabel": {
+    "description": "Label for expense transaction types",
     "type": "text",
     "placeholders": {}
   },

@@ -12,7 +12,7 @@ void main() {
         FinancialDataState(
           currentSavings: 234567.91,
           savingsDataPoints: createSampleData(),
-          monthlySpendingGoal: 3210.55,
+          monthlySpendingLimitGoal: 3210.55,
           transactions: [
             const Transaction(name: 'Paycheck', amount: 3000),
             const Transaction(name: 'Rent', amount: 1050.20),

@@ -15,8 +15,9 @@ class MonthlyGoal extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
-    final monthlySpendingGoal = context
-        .select((FinancialDataBloc bloc) => bloc.state.monthlySpendingGoal);
+    final monthlySpendingLimitGoal = context.select(
+      (FinancialDataBloc bloc) => bloc.state.monthlySpendingLimitGoal,
+    );
 
     return Card(
       elevation: 0,
@@ -33,12 +34,12 @@ class MonthlyGoal extends StatelessWidget {
               fit: BoxFit.scaleDown,
               child: DefaultTextStyle(
                 style: textTheme.displaySmall!,
-                child: Text(monthlySpendingGoal.toCurrencyWithDecimals()),
+                child: Text(monthlySpendingLimitGoal.toCurrencyWithDecimals()),
               ),
             ),
             const SizedBox(height: AppSpacing.xxs),
             Text(
-              l10n.monthlyGoalLabel,
+              l10n.monthlySpendingLimitGoal,
               style: textTheme.labelMedium,
             ),
           ],
