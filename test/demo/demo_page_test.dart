@@ -37,11 +37,7 @@ void main() {
           currentSavings: 123456,
           savingsDataPoints: createSampleData(),
           monthlySpendingLimitGoal: 1000,
-          transactions: [
-            const Transaction(title: 'Paycheck', amount: 3000),
-            const Transaction(title: 'Rent', amount: -1050.20),
-            const Transaction(title: 'Food', amount: -670.50),
-          ],
+          transactions: createSampleTransactions(),
         ),
       );
     });
