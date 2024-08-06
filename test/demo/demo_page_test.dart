@@ -75,7 +75,7 @@ void main() {
       expect(find.byType(AppThree), findsOneWidget);
     });
 
-    group('adds FinancialDataRequested event when pulling to refresh', () {
+    group('adds $FinancialDataRequested event when pulling to refresh', () {
       for (final flavor in AppFlavor.values) {
         testWidgets(
           'in $flavor',
@@ -94,13 +94,12 @@ void main() {
             expect(widgetToFling, findsOneWidget);
 
             await tester.fling(widgetToFling, const Offset(0, 500), 1000);
-            await tester.pump();
 
-            // Finish the scroll animation
+            // Finish the scroll animation.
             await tester.pump(const Duration(seconds: 1));
-            // Finish the indicator settle animation
+            // Finish the indicator settle animation.
             await tester.pump(const Duration(seconds: 1));
-            // Finish the indicator hide animation
+            // Finish the indicator hide animation.
             await tester.pump(const Duration(seconds: 1));
 
             verify(() => financialDataBloc.add(const FinancialDataRequested()))
