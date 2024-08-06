@@ -37,7 +37,7 @@ class TransactionsTable extends StatelessWidget {
             for (final transaction in transactions)
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text(transaction.title),
+                title: Text(transaction.type.title(context)),
                 subtitle: DefaultTextStyle(
                   style: textTheme.bodyMedium!.copyWith(
                     color: colorScheme.onSurfaceVariant.withOpacity(0.8),

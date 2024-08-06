@@ -1,6 +1,8 @@
 import 'package:financial_dashboard/demo/demo.dart';
+import 'package:financial_dashboard/financial_data/financial_data.dart';
 import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppTwo extends StatelessWidget {
   const AppTwo({super.key});
@@ -13,6 +15,9 @@ class AppTwo extends StatelessWidget {
     const spacing = AppSpacing.xxlg * 2;
 
     return AppScaffold(
+      onRefresh: () async {
+        context.read<FinancialDataBloc>().add(const FinancialDataRequested());
+      },
       extendBodyBehindAppBar: true,
       titlePadding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.xlg,

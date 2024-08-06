@@ -47,5 +47,41 @@
     "description": "Text shown when there is no data available",
     "type": "text",
     "placeholders": {}
+  },
+  "paycheck": "Paycheck",
+  "@paycheck":{
+    "description": "Label for paycheck",
+    "type": "text",
+    "placeholders": {}
+  },
+  "groceries": "Groceries",
+  "@groceries":{
+    "description": "Label for groceries",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rent": "Rent",
+  "@rent":{
+    "description": "Label for rent",
+    "type": "text",
+    "placeholders": {}
+  },
+  "car": "Car loan",
+  "@car":{
+    "description": "Label for car",
+    "type": "text",
+    "placeholders": {}
+  },
+  "gym": "Gym membership",
+  "@gym":{
+    "description": "Label for gym",
+    "type": "text",
+    "placeholders": {}
+  },
+  "other": "Other",
+  "@other":{
+    "description": "Label for other",
+    "type": "text",
+    "placeholders": {}
   }
 }
