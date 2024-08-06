@@ -74,5 +74,40 @@ void main() {
       );
       expect(find.byType(AppThree), findsOneWidget);
     });
+
+    group('adds FinancialDataRequested event when pulling to refresh', () {
+      for (final flavor in AppFlavor.values) {
+        testWidgets(
+          'in $flavor',
+          (tester) async {
+            when(() => flavorCubit.state).thenReturn(flavor);
+
+            await tester.pumpExperience(
+              const DemoView(),
+              flavorCubit: flavorCubit,
+              themeModeCubit: themeModeCubit,
+              financialDataBloc: financialDataBloc,
+            );
+            await tester.pumpAndSettle();
+
+            final widgetToFling = find.byType(AppScaffold);
+            expect(widgetToFling, findsOneWidget);
+
+            await tester.fling(widgetToFling, const Offset(0, 500), 1000);
+            await tester.pump();
+
+            // Finish the scroll animation
+            await tester.pump(const Duration(seconds: 1));
+            // Finish the indicator settle animation
+            await tester.pump(const Duration(seconds: 1));
+            // Finish the indicator hide animation
+            await tester.pump(const Duration(seconds: 1));
+
+            verify(() => financialDataBloc.add(const FinancialDataRequested()))
+                .called(1);
+          },
+        );
+      }
+    });
   });
 }
