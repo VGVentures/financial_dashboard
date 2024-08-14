@@ -9,14 +9,11 @@ class GoalProgressIndicator extends StatefulWidget {
   const GoalProgressIndicator({
     super.key,
     this.size = AppSpacing.xxxlg,
-    this.value = 0,
     this.isGradient = false,
   });
 
   final double size;
 
-  /// Value as a percentage between 0.0 and 1.0.
-  final double value;
   final bool isGradient;
 
   @override
@@ -26,7 +23,7 @@ class GoalProgressIndicator extends StatefulWidget {
 class _GoalProgressIndicatorState extends State<GoalProgressIndicator>
     with TickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double>? _animation;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -62,23 +59,22 @@ class _GoalProgressIndicatorState extends State<GoalProgressIndicator>
 
     var begin = 0.0;
     if (_controller.isCompleted) {
-      begin = _animation!.value;
+      _controller.reset();
+      begin = _animation.value;
     }
 
     _animation = Tween<double>(begin: begin, end: value).animate(
       _controller,
     );
 
-    _controller
-      ..reset()
-      ..forward();
+    _controller.forward();
     return SizedBox(
       height: widget.size,
       width: widget.size,
       child: AnimatedBuilder(
-        animation: _animation!,
+        animation: _animation,
         builder: (context, child) {
-          final value = _animation?.value ?? 0;
+          final value = _animation.value;
           final displayValue = (value * 100).toInt();
           return CustomPaint(
             painter: CircleProgressPainter(
