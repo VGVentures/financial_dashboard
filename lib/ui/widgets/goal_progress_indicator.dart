@@ -59,8 +59,8 @@ class _GoalProgressIndicatorState extends State<GoalProgressIndicator>
 
     var begin = 0.0;
     if (_controller.isCompleted) {
-      _controller.reset();
       begin = _animation.value;
+      _controller.reset();
     }
 
     _animation = Tween<double>(begin: begin, end: value).animate(
