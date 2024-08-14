@@ -26,7 +26,7 @@ class GoalProgressIndicator extends StatefulWidget {
 class _GoalProgressIndicatorState extends State<GoalProgressIndicator>
     with TickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<double>? _animation;
 
   @override
   void initState() {
@@ -60,23 +60,31 @@ class _GoalProgressIndicatorState extends State<GoalProgressIndicator>
       value = transactions.spent.abs() / monthlySpendingLimitGoal;
     }
 
-    _animation = Tween<double>(begin: widget.value, end: value).animate(
+    var begin = 0.0;
+    if (_controller.isCompleted) {
+      begin = _animation!.value;
+    }
+
+    _animation = Tween<double>(begin: begin, end: value).animate(
       _controller,
     );
-    _controller.forward();
 
+    _controller
+      ..reset()
+      ..forward();
     return SizedBox(
       height: widget.size,
       width: widget.size,
       child: AnimatedBuilder(
-        animation: _animation,
+        animation: _animation!,
         builder: (context, child) {
-          final displayValue = (_animation.value * 100).toInt();
+          final value = _animation?.value ?? 0;
+          final displayValue = (value * 100).toInt();
           return CustomPaint(
             painter: CircleProgressPainter(
               colorScheme: coloScheme,
               isGradient: widget.isGradient,
-              value: _animation.value,
+              value: value,
             ),
             child: Center(
               child: DefaultTextStyle(
