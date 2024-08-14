@@ -5,7 +5,7 @@ import 'package:financial_dashboard/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class GoalProgressIndicator extends StatelessWidget {
+class GoalProgressIndicator extends StatefulWidget {
   const GoalProgressIndicator({
     super.key,
     this.size = AppSpacing.xxxlg,
@@ -18,6 +18,30 @@ class GoalProgressIndicator extends StatelessWidget {
   /// Value as a percentage between 0.0 and 1.0.
   final double value;
   final bool isGradient;
+
+  @override
+  State<GoalProgressIndicator> createState() => _GoalProgressIndicatorState();
+}
+
+class _GoalProgressIndicatorState extends State<GoalProgressIndicator>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,28 +59,38 @@ class GoalProgressIndicator extends StatelessWidget {
     if (monthlySpendingLimitGoal != 0) {
       value = transactions.spent.abs() / monthlySpendingLimitGoal;
     }
-    final displayValue = (value * 100).toInt();
+
+    _animation = Tween<double>(begin: widget.value, end: value).animate(
+      _controller,
+    );
+    _controller.forward();
 
     return SizedBox(
-      height: size,
-      width: size,
-      child: CustomPaint(
-        painter: CircleProgressPainter(
-          colorScheme: coloScheme,
-          isGradient: isGradient,
-          value: value,
-        ),
-        child: Center(
-          child: DefaultTextStyle(
-            style: textTheme.titleMedium!,
-            textHeightBehavior: const TextHeightBehavior(
-              applyHeightToFirstAscent: false,
+      height: widget.size,
+      width: widget.size,
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) {
+          final displayValue = (_animation.value * 100).toInt();
+          return CustomPaint(
+            painter: CircleProgressPainter(
+              colorScheme: coloScheme,
+              isGradient: widget.isGradient,
+              value: _animation.value,
             ),
-            child: Text(
-              '$displayValue%',
+            child: Center(
+              child: DefaultTextStyle(
+                style: textTheme.titleMedium!,
+                textHeightBehavior: const TextHeightBehavior(
+                  applyHeightToFirstAscent: false,
+                ),
+                child: Text(
+                  '$displayValue%',
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
@@ -133,6 +167,7 @@ class CircleProgressPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CircleProgressPainter oldDelegate) {
     return colorScheme != oldDelegate.colorScheme ||
-        isGradient != oldDelegate.isGradient;
+        isGradient != oldDelegate.isGradient ||
+        value != oldDelegate.value;
   }
 }
