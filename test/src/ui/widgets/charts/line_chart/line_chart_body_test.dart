@@ -55,6 +55,7 @@ void main() {
         await tester.pumpExperience(
           buildSubject(onPointSelected: completer.complete),
         );
+        await tester.pumpAndSettle();
         await tester.tap(find.byType(LineChartBody));
         await tester.pumpAndSettle();
 

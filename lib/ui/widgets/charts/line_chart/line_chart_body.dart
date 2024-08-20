@@ -94,7 +94,6 @@ class _LineChartBodyState extends State<LineChartBody> {
     final strokeStyle = PaintStyle(
       strokeColor: colorScheme.onSurface.withOpacity(0.1),
     );
-
     return Chart<LineChartPoint>(
       data: widget.data,
       gestureStream: _gestureStream,
@@ -120,6 +119,9 @@ class _LineChartBodyState extends State<LineChartBody> {
       },
       marks: [
         LineMark(
+          shape: ShapeEncode(value: BasicLineShape(smooth: true)),
+          transition: Transition(duration: const Duration(seconds: 2)),
+          entrance: {MarkEntrance.x, MarkEntrance.y, MarkEntrance.opacity},
           color: ColorEncode(
             value: colorScheme.primary,
           ),
@@ -130,6 +132,7 @@ class _LineChartBodyState extends State<LineChartBody> {
         ),
         if (widget.showAreaElement)
           AreaMark(
+            shape: ShapeEncode(value: BasicAreaShape(smooth: true)),
             gradient: GradientEncode(
               value: LinearGradient(
                 begin: const Alignment(0, -5),
