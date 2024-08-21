@@ -31,6 +31,7 @@ class AppScaffold extends StatelessWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
 
     final title = Text(l10n.deviceFrameAppBarTitle);
 
@@ -42,6 +43,7 @@ class AppScaffold extends StatelessWidget {
         title: showTitleInAppBar ? title : null,
         titleTextStyle: textTheme.titleMedium,
       ),
+      backgroundColor: colorScheme.onPrimary,
       body: RefreshIndicator(
         onRefresh: onRefresh ??
             () async => Future<void>.delayed(const Duration(seconds: 1)),
@@ -57,33 +59,38 @@ class AppScaffold extends StatelessWidget {
             itemCount: 1,
             primary: true,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: extendBodyBehindAppBar
-                    ? EdgeInsets.only(
-                        top: AppBar().preferredSize.height + AppSpacing.lg,
-                        bottom: AppSpacing.lg,
-                      )
-                    : const EdgeInsets.all(AppSpacing.lg),
-                child: Column(
-                  children: [
-                    if (!showTitleInAppBar) ...[
-                      DefaultTextStyle(
-                        style: textTheme.displayMedium!,
-                        child: Padding(
-                          padding: titlePadding,
-                          child: title,
-                        ),
-                      ),
-                      const SizedBox(height: AppSpacing.lg),
-                    ],
-                    predictionChart,
-                    if (goalStats != null) ...[
-                      const SizedBox(height: AppSpacing.lg),
-                      goalStats!,
-                      const SizedBox(height: AppSpacing.lg),
-                    ],
-                    transactions,
-                  ],
+              return Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: Padding(
+                    padding: extendBodyBehindAppBar
+                        ? EdgeInsets.only(
+                            top: AppBar().preferredSize.height + AppSpacing.lg,
+                            bottom: AppSpacing.lg,
+                          )
+                        : const EdgeInsets.all(AppSpacing.lg),
+                    child: Column(
+                      children: [
+                        if (!showTitleInAppBar) ...[
+                          DefaultTextStyle(
+                            style: textTheme.displayMedium!,
+                            child: Padding(
+                              padding: titlePadding,
+                              child: title,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.lg),
+                        ],
+                        predictionChart,
+                        if (goalStats != null) ...[
+                          const SizedBox(height: AppSpacing.lg),
+                          goalStats!,
+                          const SizedBox(height: AppSpacing.lg),
+                        ],
+                        transactions,
+                      ],
+                    ),
+                  ),
                 ),
               );
             },
