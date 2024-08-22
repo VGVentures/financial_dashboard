@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appBarTitleText": "Theme Potential",
+  "appBarTitleText": "Financial Dashboard",
   "@appBarTitleText": {
     "description": "Text shown on appBar.",
     "type": "text",
