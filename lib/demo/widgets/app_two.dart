@@ -22,12 +22,21 @@ class AppTwo extends StatelessWidget {
       titlePadding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.xlg,
       ),
-      predictionChart: ColoredBox(
-        color: colorScheme.onPrimary,
+      predictionChart: SizedBox(
         child: Stack(
           children: [
             Column(
               children: [
+                Container(
+                  height: AppSpacing.xlg,
+                  decoration: BoxDecoration(
+                    color: colorScheme.surface,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(AppSpacing.xlg),
+                      topRight: Radius.circular(AppSpacing.xlg),
+                    ),
+                  ),
+                ),
                 Container(
                   color: colorScheme.surface,
                   padding: const EdgeInsets.symmetric(
@@ -46,7 +55,6 @@ class AppTwo extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: colorScheme.onPrimary,
                   height: spacing / 1.5,
                 ),
               ],
@@ -71,7 +79,6 @@ class AppTwo extends StatelessWidget {
         ),
       ),
       transactions: Container(
-        color: colorScheme.onPrimary,
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.xlg,
         ).copyWith(
