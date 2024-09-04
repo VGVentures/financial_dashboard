@@ -15,7 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   google_fonts: ^6.2.1
-  graphic: ^2.4.0
+  graphic: ^2.5.0
   intl: ^0.19.0
 
 dev_dependencies:
